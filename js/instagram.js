@@ -57,9 +57,9 @@ var Instagram = (function(){
 			var d = new Date(data[i].created_time*1000);
 			var y = d.getFullYear();
 			var m = d.getMonth()+1;
-			console.log(data[i],images.low_resolution.url)
-			var src = replacer(data[i].images.low_resolution.url);
-			var bigSrc = replacer(data[i].images.standard_resolution.url);
+			console.log(data[i].images.low_resolution.url)
+			var src = data[i].images.low_resolution.url;
+			var bigSrc = data[i].images.standard_resolution.url;
 			var text = "";
 			if(data[i].caption && data[i].caption.text){
 				text = data[i].caption.text;
