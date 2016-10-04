@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>NSD Lab2 Report | Yesterday&#39;s Byte</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[Source Code]
+Erdos-Renyi random graphsGenerationBascially, I generate the graph by randomly connecting n nodes until there is m edges. I avoid generating loops but multiple edges are allowed in the">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NSD Lab2 Report">
+<meta property="og:url" content="http://yoursite.com/2015/10/17/nsd 2 lab/index.html">
+<meta property="og:site_name" content="Yesterday's Byte">
+<meta property="og:description" content="[Source Code]
+Erdos-Renyi random graphsGenerationBascially, I generate the graph by randomly connecting n nodes until there is m edges. I avoid generating loops but multiple edges are allowed in the">
+<meta property="og:image" content="http://yoursite.com/img/network.jpg">
+<meta property="og:image" content="https://plot.ly/~Quanzhou/176.png">
+<meta property="og:image" content="https://plot.ly/~Quanzhou/201.png">
+<meta property="og:image" content="https://plot.ly/~Quanzhou/228.png">
+<meta property="og:image" content="https://plot.ly/~Quanzhou/231.png">
+<meta property="og:image" content="https://plot.ly/~Quanzhou/256.png">
+<meta property="og:image" content="https://plot.ly/~Quanzhou/298.png">
+<meta property="og:image" content="https://plot.ly/~Quanzhou/331.png">
+<meta property="og:image" content="https://plot.ly/~Quanzhou/304.png">
+<meta property="og:updated_time" content="2015-10-17T03:35:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NSD Lab2 Report">
+<meta name="twitter:description" content="[Source Code]
+Erdos-Renyi random graphsGenerationBascially, I generate the graph by randomly connecting n nodes until there is m edges. I avoid generating loops but multiple edges are allowed in the">
+<meta name="twitter:image" content="http://yoursite.com/img/network.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="Yesterday&#39;s Byte" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="https://en.gravatar.com/userimage/87177847/9f41bd8145e833e43ab4594f2bbd9c7c.jpg?size=200" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Zhou Quan</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/instagram">相册</a></li>
+				        
+							<li><a href="/plots">可视化数据</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/JoshPAT" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/u/3503482562/home?wvr=5" title="weibo">weibo</a>
+					        
+								<a class="facebook" target="_blank" href="https://www.facebook.com/quan.zhou.102" title="facebook">facebook</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Design-Pattern/" style="font-size: 10px;">Design Pattern</a> <a href="/tags/Multipath-TCP/" style="font-size: 10px;">Multipath TCP</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/algorithm/" style="font-size: 10px;">algorithm</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/performance/" style="font-size: 10px;">performance</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">我就是我，是不一样的烟火...</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Zhou Quan</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://en.gravatar.com/userimage/87177847/9f41bd8145e833e43ab4594f2bbd9c7c.jpg?size=200" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Zhou Quan</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/instagram">相册</a></li>
+		        
+					<li><a href="/plots">可视化数据</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/JoshPAT" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/3503482562/home?wvr=5" title="weibo">weibo</a>
+			        
+						<a class="facebook" target="_blank" href="https://www.facebook.com/quan.zhou.102" title="facebook">facebook</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-nsd 2 lab" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/10/17/nsd 2 lab/" class="article-date">
+  	<time datetime="2015-10-17T02:04:34.000Z" itemprop="datePublished">2015-10-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      NSD Lab2 Report
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+        <!-- Table of Contents -->
+        
+          <div id="toc" class="toc-article">
+            <strong class="toc-title">文章目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Erdos-Renyi_random_graphs"><span class="toc-number">1.</span> <span class="toc-text">Erdos-Renyi random graphs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Generation"><span class="toc-number">1.1.</span> <span class="toc-text">Generation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Characteristics"><span class="toc-number">1.2.</span> <span class="toc-text">Characteristics</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Comparison_to_PPI-DROSO_network"><span class="toc-number">1.2.1.</span> <span class="toc-text">Comparison to PPI-DROSO network</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fixed_Degree_Random_graphs"><span class="toc-number">2.</span> <span class="toc-text">Fixed Degree Random graphs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Generation_with_direct_method"><span class="toc-number">2.1.</span> <span class="toc-text">Generation with direct method</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generation_with_switch_method"><span class="toc-number">2.2.</span> <span class="toc-text">Generation with switch method</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Comparison_to_PPI-DROSO_network-1"><span class="toc-number">2.3.</span> <span class="toc-text">Comparison to PPI-DROSO network</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Barabasi-Albert_random_graphs"><span class="toc-number">3.</span> <span class="toc-text">Barabasi-Albert random graphs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Generation-1"><span class="toc-number">3.1.</span> <span class="toc-text">Generation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Comparison_to_PPI-DROSO_network-2"><span class="toc-number">3.2.</span> <span class="toc-text">Comparison to PPI-DROSO network</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Watts-Strogatz_random_graphs"><span class="toc-number">4.</span> <span class="toc-text">Watts-Strogatz random graphs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Generation-2"><span class="toc-number">4.1.</span> <span class="toc-text">Generation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Comparison_to_PPI-DROSO_network-3"><span class="toc-number">4.2.</span> <span class="toc-text">Comparison to PPI-DROSO network</span></a></li></ol></li></ol>
+          </div>
+        
+        
+        <p><img src="/img/network.jpg" alt="sophia_network"></p>
+<p><a href="https://github.com/JoshPAT/network-structure-and-dynamics/blob/master/exercise_3/models.py" target="_blank" rel="external"><em>[Source Code]</em></a></p>
+<h2 id="Erdos-Renyi_random_graphs">Erdos-Renyi random graphs</h2><h3 id="Generation">Generation</h3><p>Bascially, I generate the graph by randomly connecting <code>n</code> nodes until there is <code>m</code> edges. I avoid generating loops but multiple edges are allowed in the graph.</p>
+<h3 id="Characteristics">Characteristics</h3><p>The characteristics of <strong>erdos-renyi</strong> generated by defining n = 7236 nodes and m = 22270 edges are shown below:</p>
+<a id="more"></a>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Degree</span></div><div class="line">Numbers of degree 0: 12</div><div class="line">Max Degree: 19</div><div class="line">M<span class="keyword">in</span> Degree: 0</div><div class="line">Average Degree: 6.15091210614</div><div class="line"><span class="comment"># Density</span></div><div class="line">Density: 0.00170079134</div><div class="line"><span class="comment"># Connected Component</span></div><div class="line">component: 0, size: 7224</div><div class="line">component: connectless, size: 12</div><div class="line">biggest component: 0, size: 7224</div><div class="line"><span class="comment"># Clustering</span></div><div class="line">transitive ratio: 0.00065916199</div><div class="line">average clustering coefficient: 0.00066435292</div><div class="line"><span class="comment"># Distance</span></div><div class="line">average distance: 5.10203144747</div></pre></td></tr></table></figure>
+<p>Degree Distribution and Cumulative Degree Distribution of graph for <strong>erdos-renyi</strong> are as follows:</p>
+
+<div>
+    <a href="https://plot.ly/~Quanzhou/176/" target="_blank" title="Erdos_renyi" style="display: block; text-align: center;"><img src="https://plot.ly/~Quanzhou/176.png" alt="Erdos_renyi" style="max-width: 100%;width: 1000px;" width="1000" onerror="this.onerror=null;this.src='https://plot.ly/404.png';"></a>
+    <script data-plotly="Quanzhou:176" src="https://plot.ly/embed.js" async></script>
+</div>
+
+<blockquote>
+<p>Comments:</p>
+<ol>
+<li>Density is very low and this is expected low because we have set the parameters of <code>n</code>, <code>m</code>.</li>
+<li>There is only one big connected component with a lof of nodes, and very few disconnected nodes.</li>
+<li>Clustering is very low.</li>
+<li>Average distance is <code>5</code>, which is close to $log(n)$.</li>
+<li>The Degree Distribution follows the poisson distribution, we can say it is a homogenous network as we expected.</li>
+</ol>
+</blockquote>
+<h4 id="Comparison_to_PPI-DROSO_network">Comparison to PPI-DROSO network</h4><p>The characteristics of <strong>ppi-droso</strong> network are shown below:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Degree</span></div><div class="line">Numbers of degree 0: 0</div><div class="line">Max Degree: 176</div><div class="line">M<span class="keyword">in</span> Degree: 1</div><div class="line">Average Degree: 6.15533443892</div><div class="line"><span class="comment"># Density</span></div><div class="line">Density: 0.00170201416</div><div class="line"><span class="comment"># Connected Component</span></div><div class="line">component: 0, size: 7236</div><div class="line">biggest component: 0, size: 7236</div><div class="line"><span class="comment"># Clustering</span></div><div class="line">transitive ratio: 0.01425574417</div><div class="line">average clustering coefficient: 0.01105530603</div><div class="line"><span class="comment"># Distance</span></div><div class="line">average distance: 4.44950002349</div></pre></td></tr></table></figure>
+<p>Degree Distribution and Cumulative Degree Distribution of graph for <strong>ppi-droso</strong> are as follows:</p>
+<div><br>    <a href="https://plot.ly/~Quanzhou/201/" target="_blank" title="Drosophila_ppi" style="display: block; text-align: center;"><img src="https://plot.ly/~Quanzhou/201.png" alt="Drosophila_ppi" style="max-width: 100%;width: 1000px;" width="1000" onerror="this.onerror=null;this.src='https://plot.ly/404.png';"></a><br>    <script data-plotly="Quanzhou:201" src="https://plot.ly/embed.js" async></script><br></div>
+
+<blockquote>
+<p>Comments:</p>
+<ol>
+<li>Density is as low as <code>erdos-renyi&#39;s</code> density.</li>
+<li>There is only one big connected component with a lof of nodes, and no disconnected node.</li>
+<li>Clustering is twenty times bigger than clustering of <code>erdos-renyi</code>, it is much higer.</li>
+<li>Average distance is <code>4</code>, which is also close to $log(n)$.</li>
+<li>The Degree Distribution follows power law, and Inverse Culmulative Degree Distribution looks like a linearer graph. So we can say it is a hetergenous network as we expected.</li>
+</ol>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left">Density</th>
+<th style="text-align:center">Connected Component</th>
+<th style="text-align:center">Clustering</th>
+<th style="text-align:center">Average distance</th>
+<th style="text-align:center">Degree Distribution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ppi-droso</td>
+<td style="text-align:left">low</td>
+<td style="text-align:center">big component</td>
+<td style="text-align:center">high</td>
+<td style="text-align:center">low</td>
+<td style="text-align:center">hetergenous</td>
+</tr>
+<tr>
+<td style="text-align:left">erdos-renyi</td>
+<td style="text-align:left">low</td>
+<td style="text-align:center">big component</td>
+<td style="text-align:center">very low</td>
+<td style="text-align:center">low</td>
+<td style="text-align:center">homogenous</td>
+</tr>
+</tbody>
+</table>
+<p>&gt;</p>
+<blockquote>
+<p>Conclusion:</p>
+<p><em>Real-world complex networks are very different from random Erdös-Rényi graphs.</em></p>
+<p>We need another model to simluate since there are only a few resemblances bewteen random graph and real world graph.</p>
+</blockquote>
+<h2 id="Fixed_Degree_Random_graphs">Fixed Degree Random graphs</h2><h3 id="Generation_with_direct_method">Generation with direct method</h3><p>I generate the graph using the followed alogrithm:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#begin</span></div><div class="line">    Make a table of fixed degree: m[]</div><div class="line">    i = length(m)</div><div class="line">    <span class="keyword">while</span> i &gt; <span class="number">0</span>:</div><div class="line">        u = random(<span class="number">0</span>, i <span class="number">-1</span>)</div><div class="line">        v = random(<span class="number">0</span>, i <span class="number">-2</span>)</div><div class="line">        swap(m[u], m[i<span class="number">-1</span>])</div><div class="line">        swap(m[v], m[i<span class="number">-2</span>])</div><div class="line">        i = i <span class="number">-2</span></div><div class="line">    <span class="comment">#end</span></div><div class="line"><span class="comment">#end</span></div></pre></td></tr></table></figure>
+<h3 id="Generation_with_switch_method">Generation with switch method</h3><p>I generate the graph using the followed alogrithm:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#begin</span></div><div class="line">    Read the existing edges: E&#123;e(node1, node2)&#125;</div><div class="line">    n <span class="keyword">is</span> switch times</div><div class="line">    <span class="keyword">while</span> n &gt; <span class="number">0</span>:</div><div class="line">        e(u,v) = random(E)</div><div class="line">        e(m,l) = random(E)</div><div class="line">        swap(v, l) <span class="keyword">in</span> [e(u, v) <span class="keyword">and</span> e(m, l)]</div><div class="line">        n = n - <span class="number">1</span></div><div class="line">    <span class="comment">#end</span></div><div class="line"><span class="comment">#end</span></div></pre></td></tr></table></figure>
+<h3 id="Comparison_to_PPI-DROSO_network-1">Comparison to PPI-DROSO network</h3><p>The characteristics of <strong>graph with direct method</strong> network are shown below:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Degree</span></div><div class="line">Numbers of degree 0: 0</div><div class="line">Max Degree: 168</div><div class="line">M<span class="keyword">in</span> Degree: 1</div><div class="line">Average Degree: 6.12548369265</div><div class="line"><span class="comment"># Density</span></div><div class="line">Density: 0.00169376012</div><div class="line"><span class="comment"># Connected Component</span></div><div class="line">component: 0, size: 7128</div><div class="line">some small components, size: 2</div><div class="line">biggest component: 0, size: 7128</div><div class="line"><span class="comment"># Clustering</span></div><div class="line">transitive ratio: 0.00917903119</div><div class="line">average clustering coefficient: 0.00688555570</div><div class="line"><span class="comment"># Distance</span></div><div class="line">average distance: 4.26987911480</div></pre></td></tr></table></figure>
+<div><br>    <a href="https://plot.ly/~Quanzhou/228/" target="_blank" title="Direct_fixed_table" style="display: block; text-align: center;"><img src="https://plot.ly/~Quanzhou/228.png" alt="Direct_fixed_table" style="max-width: 100%;width: 1000px;" width="1000" onerror="this.onerror=null;this.src='https://plot.ly/404.png';"></a><br>    <script data-plotly="Quanzhou:228" src="https://plot.ly/embed.js" async></script><br></div>
+
+
+<blockquote>
+<p>Comments:</p>
+<p> <em>Mutiple edges are allowed in this Graph</em></p>
+<ol>
+<li>Density is low.</li>
+<li>There is only one big connected component with a lof of nodes, and some disconnected node.</li>
+<li>Clustering is ten times lower than <code>ppi-droso</code>.</li>
+<li>Average distance is <code>4</code>, which is also close to $log(n)$.</li>
+<li>The Degree Distribution follows power law, and Inverse Culmulative Degree Distribution looks like a linearer graph. So we can say it is a hetergenous network as we expected.</li>
+</ol>
+</blockquote>
+<p>The characteristics of <strong>graph with siwtch method</strong> network are shown below:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Degree</span></div><div class="line">Numbers of degree 0: 0</div><div class="line">Max Degree: 176</div><div class="line">M<span class="keyword">in</span> Degree: 1</div><div class="line">Average Degree: 6.15533443892</div><div class="line"><span class="comment"># Density</span></div><div class="line">Density: 0.00170201416</div><div class="line"><span class="comment"># Connected Component</span></div><div class="line">component: 0, size: 7114</div><div class="line">some small components, size: 2 or 3</div><div class="line">biggest component: 0, size: 7114</div><div class="line"><span class="comment"># Clustering</span></div><div class="line">transitive ratio: 0.00871438790</div><div class="line">average clustering coefficient: 0.00699457448</div><div class="line"><span class="comment"># Distance</span></div><div class="line">average distance: 4.24750632793</div></pre></td></tr></table></figure>
+<div><br>    <a href="https://plot.ly/~Quanzhou/231/" target="_blank" title="Switch_fixed_table" style="display: block; text-align: center;"><img src="https://plot.ly/~Quanzhou/231.png" alt="Switch_fixed_table" style="max-width: 100%;width: 1000px;" width="1000" onerror="this.onerror=null;this.src='https://plot.ly/404.png';"></a><br>    <script data-plotly="Quanzhou:231" src="https://plot.ly/embed.js" async></script><br></div>
+
+
+<p>The process of switching can be observed as follows:</p>
+<div><br>    <a href="https://plot.ly/~Quanzhou/256/" target="_blank" title="clustering coefficient Trends" style="display: block; text-align: center;"><img src="https://plot.ly/~Quanzhou/256.png" alt="clustering coefficient Trends" style="max-width: 100%;width: 1150px;" width="1150" onerror="this.onerror=null;this.src='https://plot.ly/404.png';"></a><br>    <script data-plotly="Quanzhou:256" src="https://plot.ly/embed.js" async></script><br></div>
+
+
+<blockquote>
+<p>Comments:</p>
+<p> <em>Both Loops and Mutiple edges are not allowed during generation in this Graph</em></p>
+<ol>
+<li>Density is exactly same as <code>ppi-droso</code>.</li>
+<li>There is only one big connected component with a lof of nodes, and some disconnected node.</li>
+<li>Clustering is ten times lower than <code>ppi-droso</code>.</li>
+<li>Average distance is <code>4</code>, which is also close to $log(n)$.</li>
+<li>The Degree Distribution and Inverse Culmulative Degree Distribution is identical to <code>ppi-droso</code>.</li>
+<li>As we can oberserved in the clustering coefficient trends, the clustering parameter starts to decrease when switch times increases, and after certain times of switching, the clustering parameter tends to fluctuate around around <code>0.006</code>. It means that we have visited all the elements in the graph.</li>
+</ol>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left">Density</th>
+<th style="text-align:center">Connected Component</th>
+<th style="text-align:center">Clustering</th>
+<th style="text-align:center">Average distance</th>
+<th style="text-align:center">Degree Distribution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ppi-droso</td>
+<td style="text-align:left">low</td>
+<td style="text-align:center">big component</td>
+<td style="text-align:center">high</td>
+<td style="text-align:center">low</td>
+<td style="text-align:center">hetergenous</td>
+</tr>
+<tr>
+<td style="text-align:left">direct random</td>
+<td style="text-align:left">low</td>
+<td style="text-align:center">big component</td>
+<td style="text-align:center">low</td>
+<td style="text-align:center">low</td>
+<td style="text-align:center">hetergenous</td>
+</tr>
+<tr>
+<td style="text-align:left">switch random</td>
+<td style="text-align:left">low</td>
+<td style="text-align:center">big component</td>
+<td style="text-align:center">low</td>
+<td style="text-align:center">low</td>
+<td style="text-align:center">hetergenous</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Conclusion:</p>
+<p>Although we successfully created that the graph is hetergenous, but the clustering property often seen in real world graph is not created through this model.</p>
+</blockquote>
+<h2 id="Barabasi-Albert_random_graphs">Barabasi-Albert random graphs</h2><h3 id="Generation-1">Generation</h3><p>I generate the graph using the followed alogrithm:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#begin</span></div><div class="line">    nodes: n</div><div class="line">    degree: k</div><div class="line">    i = n0 <span class="comment"># inital graph</span></div><div class="line">    <span class="keyword">while</span> i &lt;= n:</div><div class="line">        <span class="comment"># add the link according to probability,</span></div><div class="line">        <span class="comment"># which is proportional to degree of j.</span></div><div class="line">        e(i,j) = random.choice(p(j))</div><div class="line">        i = i + <span class="number">1</span></div><div class="line">    <span class="comment">#end</span></div><div class="line"><span class="comment">#end</span></div></pre></td></tr></table></figure>
+<h3 id="Comparison_to_PPI-DROSO_network-2">Comparison to PPI-DROSO network</h3><p>The characteristics of <strong>barabasi-albert</strong> network are shown below:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Degree</span></div><div class="line">Numbers of degree 0: 0</div><div class="line">Max Degree: 185</div><div class="line">M<span class="keyword">in</span> Degree: 3</div><div class="line">Average Degree: 5.99751243781</div><div class="line"><span class="comment"># Density</span></div><div class="line">Density: 0.00165837473</div><div class="line"><span class="comment"># Connected Component</span></div><div class="line">component: 0, size: 7236</div><div class="line">biggest component: 0, size: 7236</div><div class="line"><span class="comment"># Clustering</span></div><div class="line">transitive ratio: 0.00317530208</div><div class="line">average clustering coefficient: 0.00602541057</div><div class="line"><span class="comment"># Distance</span></div><div class="line">average distance: 4.19311566257</div></pre></td></tr></table></figure>
+<div><br>    <a href="https://plot.ly/~Quanzhou/298/" target="_blank" title="Barabasi_alert" style="display: block; text-align: center;"><img src="https://plot.ly/~Quanzhou/298.png" alt="Barabasi_alert" style="max-width: 100%;width: 1000px;" width="1000" onerror="this.onerror=null;this.src='https://plot.ly/404.png';"></a><br>    <script data-plotly="Quanzhou:298" src="https://plot.ly/embed.js" async></script><br></div>
+
+
+
+<blockquote>
+<p>Comments:</p>
+<p> <em>Both Loops and Mutiple edges will not be generated in this Graph</em></p>
+<ol>
+<li>Max Dregree is <code>185</code>, which means there is a <code>richest node</code>.</li>
+<li>Density is exactly same as <code>ppi-droso</code>.</li>
+<li>There is only one big connected component with a lof of nodes, and no disconnected node.</li>
+<li>Clustering is ten times lower than <code>ppi-droso</code>.</li>
+<li>Average distance is <code>4</code>, which is also close to $log(n)$.</li>
+<li>The Degree Distribution follows exactly power law, and Inverse Culmulative Degree Distribution is a linearer graph. So it is a typical hetergenous network.</li>
+</ol>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left">Density</th>
+<th style="text-align:center">Connected Component</th>
+<th style="text-align:center">Clustering</th>
+<th style="text-align:center">Average distance</th>
+<th style="text-align:center">Degree Distribution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ppi-droso</td>
+<td style="text-align:left">low</td>
+<td style="text-align:center">big component</td>
+<td style="text-align:center">high</td>
+<td style="text-align:center">low</td>
+<td style="text-align:center">hetergenous</td>
+</tr>
+<tr>
+<td style="text-align:left">barabasi-alert</td>
+<td style="text-align:left">low</td>
+<td style="text-align:center">big component</td>
+<td style="text-align:center">low</td>
+<td style="text-align:center">low</td>
+<td style="text-align:center">hetergenous</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Conclusion:</p>
+<p>Barabasi-alert is a typical scale-free network, which can be often seen in our real world, like the structure of internet, citations.<br>But In real world, the graph doesn’t exactly follows the power law. This could be a issue for this model.</p>
+</blockquote>
+<h2 id="Watts-Strogatz_random_graphs">Watts-Strogatz random graphs</h2><h3 id="Generation-2">Generation</h3><p>I generate the graph using the followed alogrithm:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#begin</span></div><div class="line">    degree: k</div><div class="line">    nodes: n</div><div class="line">    probability: p</div><div class="line"></div><div class="line">    <span class="comment"># Create a list that every u,v is connected to k nodes</span></div><div class="line">    <span class="comment"># and it connects to its k/2 neighours on each side</span></div><div class="line">    <span class="comment"># Basically a regular ring lattice</span></div><div class="line"></div><div class="line">    create E&#123;e(u,v)&#125;</div><div class="line">    <span class="comment"># for every link in Edges</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span> e(u,v) <span class="keyword">in</span> E:</div><div class="line">       <span class="keyword">if</span> p: <span class="comment"># with probability</span></div><div class="line">            n = random.pick(N) <span class="comment"># pick a random node</span></div><div class="line">            E.remove(e(u,v))</div><div class="line">            E.add(e(u,n)) <span class="comment"># rewire the link</span></div><div class="line">    <span class="comment">#end</span></div><div class="line"><span class="comment">#end</span></div></pre></td></tr></table></figure>
+<h3 id="Comparison_to_PPI-DROSO_network-3">Comparison to PPI-DROSO network</h3><p>The clustering coefficient trends of <strong>watts-strogatz</strong> is showed as below:</p>
+<div><br>    <a href="https://plot.ly/~Quanzhou/331/" target="_blank" title="clustering coefficient Trends" style="display: block; text-align: center;"><img src="https://plot.ly/~Quanzhou/331.png" alt="clustering coefficient Trends" style="max-width: 100%;width: 1150px;" width="1150" onerror="this.onerror=null;this.src='https://plot.ly/404.png';"></a><br>    <script data-plotly="Quanzhou:331" src="https://plot.ly/embed.js" async></script><br></div>
+
+<blockquote>
+<p>Comments:</p>
+<ol>
+<li>The process shown in the figure is actually a process that randomizes a regular graph. It starts from <code>p=0.01</code> to <code>p=0.9</code> to rewire a link.<br>Because the increase probability to rewire makes ‘friends of friends’ links less and less ,thus clustering coefficient decrease.</li>
+<li>We can clustering coefficient will be the same as <strong>ppi-droso</strong>. The probability is around <code>0.73</code>.</li>
+</ol>
+</blockquote>
+<p>So I generate a <strong>watts-strogatz</strong> with probability <code>p = 0.73</code>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Degree</span></div><div class="line">Numbers of degree 0: 0</div><div class="line">Max Degree: 13</div><div class="line">M<span class="keyword">in</span> Degree: 3</div><div class="line">Average Degree: 5.99751209399</div><div class="line"><span class="comment"># Density</span></div><div class="line">Density: 0.00165860394</div><div class="line"><span class="comment"># Connected Component</span></div><div class="line">component: 0, size: 7235</div><div class="line">biggest component: 0, size: 7235</div><div class="line"><span class="comment"># Clustering</span></div><div class="line">transitive ratio: 0.01055375582</div><div class="line">average clustering coefficient: 0.01166837110</div><div class="line"><span class="comment"># Distance</span></div><div class="line">average distance: 5.30820984910</div></pre></td></tr></table></figure>
+<div><br>    <a href="https://plot.ly/~Quanzhou/304/" target="_blank" title="Watt_strogatz_randomized" style="display: block; text-align: center;"><img src="https://plot.ly/~Quanzhou/304.png" alt="Watt_strogatz_randomized" style="max-width: 100%;width: 1000px;" width="1000" onerror="this.onerror=null;this.src='https://plot.ly/404.png';"></a><br>    <script data-plotly="Quanzhou:304" src="https://plot.ly/embed.js" async></script><br></div>
+
+
+<blockquote>
+<p>Comments:</p>
+<ol>
+<li>Density is low.</li>
+<li>There is only one big connected component with a lof of nodes, and no disconnected node.</li>
+<li>Clustering is the same as <code>ppi-droso</code>.</li>
+<li>Average distance is <code>5</code>, which is also close to $log(n)$.</li>
+<li>The Degree Distribution follows the poisson distribution, we can say it is a homogenous network as we expected.</li>
+</ol>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left">Density</th>
+<th style="text-align:center">Connected Component</th>
+<th style="text-align:center">Clustering</th>
+<th style="text-align:center">Average distance</th>
+<th style="text-align:center">Degree Distribution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ppi-droso</td>
+<td style="text-align:left">low</td>
+<td style="text-align:center">big component</td>
+<td style="text-align:center">high</td>
+<td style="text-align:center">low</td>
+<td style="text-align:center">hetergenous</td>
+</tr>
+<tr>
+<td style="text-align:left">watts-strogatz</td>
+<td style="text-align:left">low</td>
+<td style="text-align:center">big component</td>
+<td style="text-align:center">high</td>
+<td style="text-align:center">low</td>
+<td style="text-align:center">homogenous</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Conclusion:</p>
+<p>With Watts-strogatz model, we can randomized a regular network to obtain high clustering as the network in real-world.<br>However, it is a homogenous network.</p>
+</blockquote>
+<hr>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/10/25/fib/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          在Python中解决Fib问题的多种方法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/10/04/nsd 1 lab/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">NSD Lab1 Report</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="nsd 2 lab" data-title="NSD Lab2 Report" data-url="http://yoursite.com/2015/10/17/nsd 2 lab/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"joshpat"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Zhou Quan
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Design Pattern in Python | Yesterday&#39;s Byte</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="创建型模式Simple Factory Pattern模式动机考虑一个简单的软件应用场景，一个软件系统可以提供多个外观不同的按钮（如圆形按钮、矩形按钮、菱形按钮等）， 这些按钮都源自同一个基类，不过在继承基类后不同的子类修改了部分属性从而使得它们可以呈现不同的外观，如果我们希望在使用这些按钮时，不需要知道这些具体按钮类的名字，只需要知道表示该按钮类的一个参数，并提供一个调用方便的方法，把该参数传">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Design Pattern in Python">
+<meta property="og:url" content="http://yoursite.com/2016/03/17/design pattern in python/index.html">
+<meta property="og:site_name" content="Yesterday's Byte">
+<meta property="og:description" content="创建型模式Simple Factory Pattern模式动机考虑一个简单的软件应用场景，一个软件系统可以提供多个外观不同的按钮（如圆形按钮、矩形按钮、菱形按钮等）， 这些按钮都源自同一个基类，不过在继承基类后不同的子类修改了部分属性从而使得它们可以呈现不同的外观，如果我们希望在使用这些按钮时，不需要知道这些具体按钮类的名字，只需要知道表示该按钮类的一个参数，并提供一个调用方便的方法，把该参数传">
+<meta property="og:image" content="http://yoursite.com/img/design_pattern.jpg">
+<meta property="og:updated_time" content="2016-03-21T09:19:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Design Pattern in Python">
+<meta name="twitter:description" content="创建型模式Simple Factory Pattern模式动机考虑一个简单的软件应用场景，一个软件系统可以提供多个外观不同的按钮（如圆形按钮、矩形按钮、菱形按钮等）， 这些按钮都源自同一个基类，不过在继承基类后不同的子类修改了部分属性从而使得它们可以呈现不同的外观，如果我们希望在使用这些按钮时，不需要知道这些具体按钮类的名字，只需要知道表示该按钮类的一个参数，并提供一个调用方便的方法，把该参数传">
+<meta name="twitter:image" content="http://yoursite.com/img/design_pattern.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="Yesterday&#39;s Byte" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="https://en.gravatar.com/userimage/87177847/9f41bd8145e833e43ab4594f2bbd9c7c.jpg?size=200" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Zhou Quan</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/instagram">相册</a></li>
+				        
+							<li><a href="/plots">可视化数据</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/JoshPAT" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/u/3503482562/home?wvr=5" title="weibo">weibo</a>
+					        
+								<a class="facebook" target="_blank" href="https://www.facebook.com/quan.zhou.102" title="facebook">facebook</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Design-Pattern/" style="font-size: 10px;">Design Pattern</a> <a href="/tags/Multipath-TCP/" style="font-size: 10px;">Multipath TCP</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/algorithm/" style="font-size: 10px;">algorithm</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/performance/" style="font-size: 10px;">performance</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">我就是我，是不一样的烟火...</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Zhou Quan</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://en.gravatar.com/userimage/87177847/9f41bd8145e833e43ab4594f2bbd9c7c.jpg?size=200" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Zhou Quan</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/instagram">相册</a></li>
+		        
+					<li><a href="/plots">可视化数据</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/JoshPAT" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/3503482562/home?wvr=5" title="weibo">weibo</a>
+			        
+						<a class="facebook" target="_blank" href="https://www.facebook.com/quan.zhou.102" title="facebook">facebook</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-design pattern in python" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/17/design pattern in python/" class="article-date">
+  	<time datetime="2016-03-17T00:13:20.000Z" itemprop="datePublished">2016-03-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Design Pattern in Python
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-Pattern/">Design Pattern</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+        <!-- Table of Contents -->
+        
+          <div id="toc" class="toc-article">
+            <strong class="toc-title">文章目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建型模式"><span class="toc-number">1.</span> <span class="toc-text">创建型模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Simple_Factory_Pattern"><span class="toc-number">1.1.</span> <span class="toc-text">Simple Factory Pattern</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#模式动机"><span class="toc-number">1.1.1.</span> <span class="toc-text">模式动机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模式定义"><span class="toc-number">1.1.2.</span> <span class="toc-text">模式定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模式结构"><span class="toc-number">1.1.3.</span> <span class="toc-text">模式结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实例"><span class="toc-number">1.1.4.</span> <span class="toc-text">实例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Factory_Method_Pattern"><span class="toc-number">1.2.</span> <span class="toc-text">Factory Method Pattern</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#模式动机-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">模式动机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模式定义-1"><span class="toc-number">1.2.2.</span> <span class="toc-text">模式定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模式结构-1"><span class="toc-number">1.2.3.</span> <span class="toc-text">模式结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实例1"><span class="toc-number">1.2.4.</span> <span class="toc-text">实例1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实例2"><span class="toc-number">1.2.5.</span> <span class="toc-text">实例2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Abstract_Factory_Pattern"><span class="toc-number">1.3.</span> <span class="toc-text">Abstract Factory Pattern</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#模式动机-2"><span class="toc-number">1.3.1.</span> <span class="toc-text">模式动机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模式定义-2"><span class="toc-number">1.3.2.</span> <span class="toc-text">模式定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模式结构-2"><span class="toc-number">1.3.3.</span> <span class="toc-text">模式结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实例-1"><span class="toc-number">1.3.4.</span> <span class="toc-text">实例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Builder"><span class="toc-number">1.4.</span> <span class="toc-text">Builder</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#模式动机-3"><span class="toc-number">1.4.1.</span> <span class="toc-text">模式动机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模式定义-3"><span class="toc-number">1.4.2.</span> <span class="toc-text">模式定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模式结构-3"><span class="toc-number">1.4.3.</span> <span class="toc-text">模式结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Builder和Factory的区别"><span class="toc-number">1.4.4.</span> <span class="toc-text">Builder和Factory的区别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Singleton"><span class="toc-number">1.5.</span> <span class="toc-text">Singleton</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#模式动机-4"><span class="toc-number">1.5.1.</span> <span class="toc-text">模式动机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模式定义-4"><span class="toc-number">1.5.2.</span> <span class="toc-text">模式定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模式分析"><span class="toc-number">1.5.3.</span> <span class="toc-text">模式分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实例-2"><span class="toc-number">1.5.4.</span> <span class="toc-text">实例</span></a></li></ol></li></ol></li></ol>
+          </div>
+        
+        
+        <p><img src="/img/design_pattern.jpg" alt="pope"></p>
+<h2 id="创建型模式">创建型模式</h2><h3 id="Simple_Factory_Pattern">Simple Factory Pattern</h3><h4 id="模式动机">模式动机</h4><p>考虑一个简单的软件应用场景，一个软件系统可以提供多个外观不同的按钮（如圆形按钮、矩形按钮、菱形按钮等）， 这些按钮都源自同一个基类，不过在继承基类后不同的子类修改了部分属性从而使得它们可以呈现不同的外观，如果我们希望在使用这些按钮时，不需要知道这些具体按钮类的名字，只需要知道表示该按钮类的一个参数，并提供一个调用方便的方法，把该参数传入方法即可返回一个相应的按钮对象，此时，就可以使用简单工厂模式。</p>
+<h4 id="模式定义">模式定义</h4><p>简单工厂模式(Simple Factory Pattern)：又称为静态工厂方法(Static Factory Method)模式，它属于类创建型模式。在简单工厂模式中，可以根据参数的不同返回不同类的实例。简单工厂模式专门定义一个类来负责创建其他类的实例，被创建的实例通常都具有共同的父类。</p>
+<h4 id="模式结构">模式结构</h4><p>简单工厂模式包含如下角色：</p>
+<p>Factory：工厂角色<br>工厂角色负责实现创建所有实例的内部逻辑</p>
+<p>Product：抽象产品角色<br>抽象产品角色是所创建的所有对象的父类，负责描述所有实例所共有的公共接口</p>
+<p>ConcreteProduct：具体产品角色<br>具体产品角色是创建目标，所有创建的对象都充当这个角色的某个具体类的实例。</p>
+<h4 id="实例">实例</h4><a id="more"></a>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> random</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Product</span><span class="params">(object)</span>:</span></div><div class="line">    types = []</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">factory</span><span class="params">(type)</span>:</span></div><div class="line">    </div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">ProductA</span><span class="params">(Product)</span>:</span></div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">use</span><span class="params">(self)</span>:</span> print(<span class="string">"ProductA being used"</span>)</div><div class="line">    </div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">ProductB</span><span class="params">(Product)</span>:</span></div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">use</span><span class="params">(self)</span>:</span> print(<span class="string">"ProductB being used"</span>)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> type == <span class="string">"ProductA"</span>: <span class="keyword">return</span> ProductA()</div><div class="line">    <span class="keyword">if</span> type == <span class="string">"ProductB"</span>: <span class="keyword">return</span> ProductB()</div><div class="line">    <span class="keyword">assert</span> <span class="number">0</span>, <span class="string">"Bad shape creation: "</span> + type</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">productNameGen</span><span class="params">(n)</span>:</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</div><div class="line">        <span class="keyword">yield</span> factory(random.choice([<span class="string">"ProductA"</span>, <span class="string">"ProductB"</span>]))</div><div class="line"></div><div class="line"><span class="keyword">for</span> prod <span class="keyword">in</span> productNameGen(<span class="number">7</span>):</div><div class="line">    prod.use()</div></pre></td></tr></table></figure>
+<h3 id="Factory_Method_Pattern">Factory Method Pattern</h3><h4 id="模式动机-1">模式动机</h4><p>现在对该系统进行修改，不再设计一个按钮工厂类来统一负责所有产品的创建，而是将具体按钮的创建过程交给专门的工厂子类去完成，我们先定义一个抽象的按钮工厂类，再定义具体的工厂类来生成圆形按钮、矩形按钮、菱形按钮等，它们实现在抽象按钮工厂类中定义的方法。这种抽象化的结果使这种结构可以在不修改具体工厂类的情况下引进新的产品，如果出现新的按钮类型，只需要为这种新类型的按钮创建一个具体的工厂类就可以获得该新按钮的实例，这一特点无疑使得工厂方法模式具有超越简单工厂模式的优越性，更加符合“开闭原则”。</p>
+<h4 id="模式定义-1">模式定义</h4><p>工厂方法模式(Factory Method Pattern)又称为工厂模式，也叫虚拟构造器(Virtual Constructor)模式或者多态工厂(Polymorphic Factory)模式，它属于类创建型模式。在工厂方法模式中，工厂父类负责定义创建产品对象的公共接口，而工厂子类则负责生成具体的产品对象，这样做的目的是将产品类的实例化操作延迟到工厂子类中完成，即通过工厂子类来确定究竟应该实例化哪一个具体产品类。</p>
+<h4 id="模式结构-1">模式结构</h4><p>工厂方法模式包含如下角色：</p>
+<p>Product：抽象产品<br>ConcreteProduct：具体产品<br>Factory：抽象工厂<br>ConcreteFactory：具体工厂</p>
+<h4 id="实例1">实例1</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> generators</div><div class="line"><span class="keyword">import</span> random</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ShapeFactory</span>:</span></div><div class="line">    factories = &#123;&#125;</div><div class="line">    </div><div class="line"><span class="meta">    @staticmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">addFactory</span><span class="params">(id, shapeFactory)</span>:</span></div><div class="line">        ShapeFactory.factories.put[id] = shapeFactory</div><div class="line"></div><div class="line"><span class="meta">    @staticmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">createShape</span><span class="params">(id)</span>:</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> ShapeFactory.factories.has_key(id):</div><div class="line">            factoryname = id + <span class="string">'Factory'</span></div><div class="line">            <span class="comment"># make a class instance</span></div><div class="line">            ShapeFactory.factories[factoryname] = globals()[factoryname]()</div><div class="line">        <span class="keyword">return</span> ShapeFactory.factories[factoryname].create()</div><div class="line"></div><div class="line">    <span class="comment"># Below: Original Code from Python 3 Patterns</span></div><div class="line">    <span class="comment"># I don't like it.</span></div><div class="line">    <span class="comment"># @staticmethod</span></div><div class="line">    <span class="comment"># def createShape(id):</span></div><div class="line">    <span class="comment">#     if not ShapeFactory.factories.has_key(id):</span></div><div class="line">    <span class="comment">#         ShapeFactory.factories[id] = eval(id + '.Factory()')</span></div><div class="line">    <span class="comment">#     return ShapeFactory.factories[id].create()</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CircleFactory</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> Circle()</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SquareFactory</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> Square()</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shape</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span><span class="params">(Shape)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">draw</span><span class="params">(self)</span>:</span> print(<span class="string">"Circle.draw"</span>)</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">erase</span><span class="params">(self)</span>:</span> print(<span class="string">"Circle.erase"</span>)</div><div class="line">    <span class="comment"># class Factory:</span></div><div class="line">    <span class="comment">#     def create(self):</span></div><div class="line">    <span class="comment">#         return Circle()</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Square</span><span class="params">(Shape)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">draw</span><span class="params">(self)</span>:</span> print(<span class="string">"Square.draw"</span>)</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">erase</span><span class="params">(self)</span>:</span> print(<span class="string">"Square.erase"</span>)</div><div class="line">    <span class="comment"># class Factory:</span></div><div class="line">    <span class="comment">#     def create(self):</span></div><div class="line">    <span class="comment">#         return Square()</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">shapeNameGen</span><span class="params">(n)</span>:</span></div><div class="line">    <span class="comment"># children of Shape class</span></div><div class="line">    types = Shape.__subclasses__()</div><div class="line">    <span class="comment"># children's name</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</div><div class="line">        <span class="keyword">yield</span> random.choice(types).__name__</div><div class="line"></div><div class="line">shapes = [ ShapeFactory.createShape(i) <span class="keyword">for</span> i <span class="keyword">in</span> shapeNameGen(<span class="number">7</span>)]</div><div class="line"></div><div class="line"><span class="keyword">for</span> shape <span class="keyword">in</span> shapes:</div><div class="line">    shape.draw()</div><div class="line">    shape.erase()</div></pre></td></tr></table></figure>
+<h4 id="实例2">实例2</h4><p>该实例来自于Book: <a href="http://ebook-dl.com/item/learning-python-design-patterns-2013-gennadiy-zlobin/" target="_blank" rel="external">Learning Python Design Patterns</a>的个人改编版, 但是个人觉得创建逻辑依旧是静态.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> abc</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Factory</span><span class="params">(object)</span>:</span></div><div class="line">    __metaclass__ = abc.ABCMeta</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self.creation = self.create()</div><div class="line">        self.consumption = self.consume()</div><div class="line"></div><div class="line"><span class="meta">    @abc.abstractmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">pass</span></div><div class="line"><span class="meta">    @abc.abstractmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">consume</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CarFactory</span><span class="params">(Factory)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(self)</span>:</span></div><div class="line">        print(<span class="string">'creating a car'</span>)</div><div class="line">        <span class="keyword">return</span> Car()</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">consume</span><span class="params">(self)</span>:</span></div><div class="line">        print(<span class="string">'consuming car parts'</span>)</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MotorcycleFactory</span><span class="params">(Factory)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(self)</span>:</span></div><div class="line">        print(<span class="string">'creating a Motorcycle'</span>)</div><div class="line">        <span class="keyword">return</span> Motorcycle()</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">consume</span><span class="params">(self)</span>:</span></div><div class="line">        print(<span class="string">'consuming Motorcycle parts'</span>)</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Vichel</span><span class="params">(object)</span>:</span></div><div class="line">    __metaclass__ = abc.ABCMeta</div><div class="line">    </div><div class="line"><span class="meta">    @abc.abstractmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span><span class="params">(Vichel)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> <span class="string">'a fancy Car'</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Motorcycle</span><span class="params">(Vichel)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> <span class="string">'a fancy Motorcycle'</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    <span class="comment"># this abc stuff is same as Interface in Java</span></div><div class="line">    <span class="comment"># I think it is still a simple factory pattern</span></div><div class="line">    <span class="comment"># Still Static, I don't like it</span></div><div class="line">    CarFactory.create()</div></pre></td></tr></table></figure>
+<h3 id="Abstract_Factory_Pattern">Abstract Factory Pattern</h3><h4 id="模式动机-2">模式动机</h4><p>在工厂方法模式中具体工厂负责生产具体的产品，每一个具体工厂对应一种具体产品，工厂方法也具有唯一性，一般情况下，一个具体工厂中只有一个工厂方法或者一组重载的工厂方法。但是有时候我们需要一个工厂可以提供多个产品对象，而不是单一的产品对象。</p>
+<p>为了更清晰地理解工厂方法模式，需要先引入两个概念：</p>
+<ul>
+<li>产品等级结构 ：产品等级结构即产品的继承结构，如一个抽象类是电视机，其子类有海尔电视机、海信电视机、TCL电视机，则抽象电视机与具体品牌的电视机之间构成了一个产品等级结构，抽象电视机是父类，而具体品牌的电视机是其子类。</li>
+<li>产品族 ：在抽象工厂模式中，产品族是指由同一个工厂生产的，位于不同产品等级结构中的一组产品，如海尔电器工厂生产的海尔电视机、海尔电冰箱，海尔电视机位于电视机产品等级结构中，海尔电冰箱位于电冰箱产品等级结构中。</li>
+</ul>
+<p>当系统所提供的工厂所需生产的具体产品并不是一个简单的对象，而是多个位于不同产品等级结构中属于不同类型的具体产品时需要使用抽象工厂模式。</p>
+<p>抽象工厂模式是所有形式的工厂模式中最为抽象和最具一般性的一种形态。</p>
+<p>抽象工厂模式与工厂方法模式最大的区别在于，工厂方法模式针对的是一个产品等级结构，而抽象工厂模式则需要面对多个产品等级结构，一个工厂等级结构可以负责多个不同产品等级结构中的产品对象的创建 。当一个工厂等级结构可以创建出分属于不同产品等级结构的一个产品族中的所有对象时，抽象工厂模式比工厂方法模式更为简单、有效率。</p>
+<h4 id="模式定义-2">模式定义</h4><p>抽象工厂模式(Abstract Factory Pattern)：提供一个创建一系列相关或相互依赖对象的接口，而无须指定它们具体的类。抽象工厂模式又称为Kit模式，属于对象创建型模式。</p>
+<h4 id="模式结构-2">模式结构</h4><p>抽象工厂模式包含如下角色：</p>
+<p>AbstractFactory：抽象工厂<br>ConcreteFactory：具体工厂<br>AbstractProduct：抽象产品<br>Product：具体产品</p>
+<h4 id="实例-1">实例</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> abc</div><div class="line"><span class="keyword">import</span> random</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Phone</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">touch</span><span class="params">(self, button)</span>:</span> <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SamsungEdge</span><span class="params">(Phone)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">touch</span><span class="params">(self, button)</span>:</span></div><div class="line">        print(<span class="string">'&#123;&#125; is activated by Edge'</span>.format(button))</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SmartisanNut</span><span class="params">(Phone)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">touch</span><span class="params">(self, button)</span>:</span></div><div class="line">        print(<span class="string">'&#123;&#125; is activated by Nut'</span>.format(button))</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">VR</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wear</span><span class="params">(self)</span>:</span> <span class="keyword">pass</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wearable</span><span class="params">(self)</span>:</span> <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GearVR</span><span class="params">(VR)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wear</span><span class="params">(self)</span>:</span></div><div class="line">        print(<span class="string">'GearVR is Sooooooo AweSome'</span>)</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HammerVR</span><span class="params">(VR)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wear</span><span class="params">(self)</span>:</span></div><div class="line">        print(<span class="string">'HammerVR is waiting for SickleVR'</span>) </div><div class="line"></div><div class="line"><span class="comment"># Abstract Factory</span></div><div class="line"><span class="comment"># 定义抽象工厂的抽象产品族</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Factory</span><span class="params">(object)</span>:</span></div><div class="line">    __metaclass__ = abc.ABCMeta</div><div class="line"></div><div class="line"><span class="meta">    @abc.abstractmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">makePhones</span><span class="params">(self)</span>:</span> <span class="keyword">pass</span> </div><div class="line"></div><div class="line"><span class="meta">    @abc.abstractmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">makeVRGears</span><span class="params">(self)</span>:</span> <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="comment"># Concrete factories:</span></div><div class="line"><span class="comment"># 实例工厂完成其产品族的定义</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SmartisanFactory</span><span class="params">(Factory)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">makePhones</span><span class="params">(self)</span>:</span> <span class="keyword">return</span> SmartisanNut()</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">makeVRGears</span><span class="params">(self)</span>:</span> <span class="keyword">return</span> HammerVR()</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SamsungFactory</span><span class="params">(Factory)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">makePhones</span><span class="params">(self)</span>:</span> <span class="keyword">return</span> SamsungEdge()</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">makeVRGears</span><span class="params">(self)</span>:</span> <span class="keyword">return</span> GearVR()</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Client</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, factory)</span>:</span></div><div class="line">        self.factory = factory</div><div class="line">        self.phone = factory.makePhones() <span class="comment"># 获得完整产品</span></div><div class="line">        self.vr = factory.makeVRGears()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">play</span><span class="params">(self)</span>:</span></div><div class="line">        self.phone.touch(<span class="string">'home button'</span>)</div><div class="line">        self.vr.wear()</div><div class="line">        print(self.vr.wearable())</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(<span class="number">4</span>):</div><div class="line">        c = Client(random.choice(Factory.__subclasses__())())</div><div class="line">        c.play()</div></pre></td></tr></table></figure>
+<h3 id="Builder">Builder</h3><h4 id="模式动机-3">模式动机</h4><p>无论是在现实世界中还是在软件系统中，都存在一些复杂的对象，它们拥有多个组成部分，如汽车，它包括车轮、方向盘、发送机等各种部件。而对于大多数用户而言，无须知道这些部件的装配细节，也几乎不会使用单独某个部件，而是使用一辆完整的汽车，可以通过建造者模式对其进行设计与描述，建造者模式可以将部件和其组装过程分开，一步一步创建一个复杂的对象。用户只需要指定复杂对象的类型就可以得到该对象，而无须知道其内部的具体构造细节。</p>
+<p>在软件开发中，也存在大量类似汽车一样的复杂对象，它们拥有一系列成员属性，这些成员属性中有些是引用类型的成员对象。而且在这些复杂对象中，还可能存在一些限制条件，如某些属性没有赋值则复杂对象不能作为一个完整的产品使用；有些属性的赋值必须按照某个顺序，一个属性没有赋值之前，另一个属性可能无法赋值等。</p>
+<p>复杂对象相当于一辆有待建造的汽车，而对象的属性相当于汽车的部件，建造产品的过程就相当于组合部件的过程。由于组合部件的过程很复杂，因此，这些部件的组合过程往往被“外部化”到一个称作建造者的对象里，建造者返还给客户端的是一个已经建造完毕的完整产品对象，而用户无须关心该对象所包含的属性以及它们的组装方式，这就是建造者模式的模式动机。</p>
+<h4 id="模式定义-3">模式定义</h4><p>造者模式(Builder Pattern)：将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。</p>
+<p>建造者模式是一步一步创建一个复杂的对象，它允许用户只通过指定复杂对象的类型和内容就可以构建它们，用户不需要知道内部的具体构建细节。建造者模式属于对象创建型模式。根据中文翻译的不同，建造者模式又可以称为生成器模式。</p>
+<h4 id="模式结构-3">模式结构</h4><p>建造者模式包含如下角色：</p>
+<p>Builder：抽象建造者<br>ConcreteBuilder：具体建造者<br>Director：指挥者<br>Product：产品角色</p>
+<h4 id="Builder和Factory的区别">Builder和Factory的区别</h4><p>Builder角色扮演指挥者与建造者双重角色。</p>
+<p>建造者模式与抽象工厂模式的比较, 参考<a href="http://stackoverflow.com/questions/757743/what-is-the-difference-between-builder-design-pattern-and-factory-design-pattern" target="_blank" rel="external">StackOverflow</a>:</p>
+<ul>
+<li><p>与抽象工厂模式相比， 建造者模式返回一个<code>组装</code>好的产品;<br>而抽象工厂模式返回一系列相关的产品，这些产品位于不同的产品等级结构，构成了一个产品族。</p>
+</li>
+<li><p>在抽象工厂模式中，客户端实例化工厂类，然后调用工厂方法获取所需产品对象(all the parameters pass in on a single line);<br>在建造者模式中，客户端可以不直接调用建造者的相关方法，而是通过指挥者类来指导如何生成对象，包括对象的组装过程和建造步骤，它侧重于<code>一步步构造一个复杂对象</code>，返回一个完整的对象。<br>(use setter methods to slowly build up your parameter list)</p>
+</li>
+<li><p>如果将抽象工厂模式看成汽车配件生产工厂 ，生产一个产品族的产品，那么建造者模式就是一个汽车组装工厂，通过对部件的组装可以返回一辆完整的汽车。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line"># -*- coding: utf-8 -*-</div><div class="line"></div><div class="line"># Director</div><div class="line"># Director完成组装</div><div class="line">class Director(object):</div><div class="line"></div><div class="line">    def __init__(self):</div><div class="line">        self.builder = None</div><div class="line"></div><div class="line">    def construct_phone(self):</div><div class="line">        self.builder.new_phone()</div><div class="line">        self.builder.build_screen()</div><div class="line">        self.builder.build_cpu()</div><div class="line"></div><div class="line">    def get_phone(self):</div><div class="line">        return self.builder.phone</div><div class="line"></div><div class="line"></div><div class="line"># Abstract Builder</div><div class="line"># Builder对各个部件进行定义</div><div class="line">class Builder(object):</div><div class="line"></div><div class="line">    def __init__(self):</div><div class="line">        self.phone = None</div><div class="line"></div><div class="line">    def new_phone(self):</div><div class="line">        self.phone = Phone()</div><div class="line"></div><div class="line">    def build_screen(self):</div><div class="line">        raise NotImplementedError</div><div class="line"></div><div class="line">    def build_cpu(self):</div><div class="line">        raise NotImplementedError</div><div class="line"></div><div class="line"># Concrete Builder</div><div class="line">class BuilderIPhone(Builder):</div><div class="line"></div><div class="line">    def build_screen(self):</div><div class="line">        self.phone.screen = &apos;Retina HD display&apos;</div><div class="line"></div><div class="line">    def build_cpu(self):</div><div class="line">        self.phone.cpu = &apos;A9 chip&apos;</div><div class="line"></div><div class="line"></div><div class="line">class BuilderSmartisan(Builder):</div><div class="line"></div><div class="line">    def build_screen(self):</div><div class="line">        self.phone.screen = &apos;康宁®第三代大猩猩®玻璃&apos;</div><div class="line"></div><div class="line">    def build_cpu(self):</div><div class="line">        self.phone.cpu = &apos;Adreno™ 418&apos;</div><div class="line"></div><div class="line"># Product</div><div class="line"># 先定义产品内部的部件</div><div class="line">class Phone(object):</div><div class="line"></div><div class="line">    def __init__(self):</div><div class="line">        self.screen = None</div><div class="line">        self.cpu = None</div><div class="line"></div><div class="line">    def __repr__(self):</div><div class="line">        return &apos;Screen: &#123;0.screen&#125; | CPU: &#123;0.cpu&#125;&apos;.format(self)</div><div class="line"></div><div class="line"></div><div class="line"># Client</div><div class="line">if __name__ == &quot;__main__&quot;:</div><div class="line">    print(&apos;Cool&apos;)</div><div class="line">    director = Director()</div><div class="line">    director.builder = BuilderIPhone()</div><div class="line">    director.construct_phone()</div><div class="line">    iphone = director.get_phone()</div><div class="line">    print(iphone)</div><div class="line">    director.builder = BuilderSmartisan()</div><div class="line">    director.construct_phone()</div><div class="line">    smartisan = director.get_phone()</div><div class="line">    print(smartisan)</div></pre></td></tr></table></figure>
+<h3 id="Singleton">Singleton</h3><h4 id="模式动机-4">模式动机</h4><p>对于系统中的某些类来说，只有一个实例很重要，例如，一个系统中可以存在多个打印任务，但是只能有一个正在工作的任务；一个系统只能有一个窗口管理器或文件系统；一个系统只能有配置文件.</p>
+<p>如何保证一个类只有一个实例并且这个实例易于被访问呢？定义一个全局变量可以确保对象随时都可以被访问，但不能防止我们实例化多个对象。</p>
+<p>一个更好的解决办法是让类自身负责保存它的唯一实例。这个类可以保证没有其他实例被创建，并且它可以提供一个访问该实例的方法。这就是单例模式的模式动机。</p>
+<h4 id="模式定义-4">模式定义</h4><p>单例模式(Singleton Pattern)：单例模式确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类称为单例类，它提供全局访问的方法。</p>
+<p>单例模式的要点有三个：一是某个类只能有一个实例；二是它必须自行创建这个实例；三是它必须自行向整个系统提供这个实例。单例模式是一种对象创建型模式。单例模式又名单件模式或单态模式。</p>
+<h4 id="模式分析">模式分析</h4><p>单例模式的目的是保证一个类仅有一个实例，并提供一个访问它的全局访问点。单例模式包含的角色只有一个，就是单例类——Singleton。单例类拥有一个私有构造函数，确保用户无法通过new关键字直接实例化它。除此之外，该模式中包含一个静态私有成员变量与静态公有的工厂方法，该工厂方法负责检验实例的存在性并实例化自己，然后存储在静态成员变量中，以确保只有一个实例被创建。</p>
+<p>在单例模式的实现过程中，需要注意如下三点：</p>
+<ul>
+<li>单例类的构造函数为私有；</li>
+<li>提供一个自身的静态私有成员变量；</li>
+<li>提供一个公有的静态工厂方法。</li>
+</ul>
+<h4 id="实例-2">实例</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span><span class="params">(type)</span>:</span></div><div class="line">    _instances = &#123;&#125;</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(cls, *args, **kwargs)</span>:</span></div><div class="line">        <span class="keyword">if</span> cls <span class="keyword">not</span> <span class="keyword">in</span> cls._instances:</div><div class="line">            cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)</div><div class="line">        <span class="keyword">return</span> cls._instances[cls]</div><div class="line"></div><div class="line"><span class="comment"># python2</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Setup</span><span class="params">(object)</span>:</span></div><div class="line">    __metaclass__ = Singleton</div><div class="line">    <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="comment"># python3</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Setup</span><span class="params">(metaclass=Singleton)</span>:</span></div><div class="line">    <span class="keyword">pass</span></div></pre></td></tr></table></figure>
+<p>TO Be Continued…</p>
+<p>参考资料:</p>
+<p><a href="http://design-patterns.readthedocs.org/zh_CN/latest/creational_patterns/creational.html" target="_blank" rel="external">图说设计模式</a><br><a href="https://www.packtpub.com/application-development/learning-python-design-patterns" target="_blank" rel="external">Learning Python Design Patterns</a><br><a href="http://python-3-patterns-idioms-test.readthedocs.org/en/latest/index.html" target="_blank" rel="external">Python 3 Patterns, Recipes and Idioms</a><br><a href="https://github.com/faif/python-patterns" target="_blank" rel="external">Github Python Patterns</a><br><a href="http://stackoverflow.com/questions/674304/pythons-use-of-new-and-init" target="_blank" rel="external">Understand <strong>new</strong> in Python</a><br><a href="http://jfine-python-classes.readthedocs.org/en/latest/type-name-bases-dict.html" target="_blank" rel="external">Objects and classes in Python</a><br><a href="http://stackoverflow.com/questions/6760685/creating-a-singleton-in-python?lq=1" target="_blank" rel="external">Good Discussion of Singleton</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/10/25/fib/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">在Python中解决Fib问题的多种方法</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="design pattern in python" data-title="Design Pattern in Python" data-url="http://yoursite.com/2016/03/17/design pattern in python/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"joshpat"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Zhou Quan
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>
