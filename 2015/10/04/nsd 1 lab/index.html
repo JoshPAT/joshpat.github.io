@@ -22,7 +22,7 @@ Basic operations and propertiesExercise 2 — Size of a graphThe program compute
 <meta property="og:image" content="http://yoursite.com/img/figures/sophia_size.png">
 <meta property="og:image" content="http://yoursite.com/img/figures/sophia_bc.png">
 <meta property="og:image" content="http://yoursite.com/img/figures/inet_bc.png">
-<meta property="og:updated_time" content="2015-10-04T13:37:34.000Z">
+<meta property="og:updated_time" content="2018-01-04T20:02:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NSD Lab1 Report">
 <meta name="twitter:description" content="[Source Code]
@@ -108,7 +108,7 @@ Basic operations and propertiesExercise 2 — Size of a graphThe program compute
 					<nav class="header-nav">
 						<div class="social">
 							
-								<a class="github" target="_blank" href="https://github.com/JoshPAT" title="github">github</a>
+								<a class="github" target="_blank" href="https://github.com/zh0uquan" title="github">github</a>
 					        
 								<a class="weibo" target="_blank" href="http://weibo.com/u/3503482562/home?wvr=5" title="weibo">weibo</a>
 					        
@@ -172,7 +172,7 @@ Basic operations and propertiesExercise 2 — Size of a graphThe program compute
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="https://github.com/JoshPAT" title="github">github</a>
+						<a class="github" target="_blank" href="https://github.com/zh0uquan" title="github">github</a>
 			        
 						<a class="weibo" target="_blank" href="http://weibo.com/u/3503482562/home?wvr=5" title="weibo">weibo</a>
 			        
@@ -230,15 +230,15 @@ Basic operations and propertiesExercise 2 — Size of a graphThe program compute
         
         
         <p><img src="/img/network.jpg" alt="sophia_network"></p>
-<p><a href="https://github.com/JoshPAT/network-structure-and-dynamics/blob/master/exercise_2/nsd_homework_1.py" target="_blank" rel="external"><em>[Source Code]</em></a></p>
+<p><a href="https://github.com/zh0uquan/network-structure-and-dynamics/blob/master/exercise_2/nsd_homework_1.py" target="_blank" rel="external"><em>[Source Code]</em></a></p>
 <h3 id="Basic_operations_and_properties">Basic operations and properties</h3><h4 id="Exercise_2_—_Size_of_a_graph">Exercise 2 — Size of a graph</h4><p>The program computes and stores it in file <code>(*)_graphe.n</code>. <em>And (\</em>) is the name of the file.*</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">g = Graph(<span class="string">'dataset.txt'</span>) <span class="comment"># add dataset '*.txt'</span></div><div class="line">g.compute_node_number()</div></pre></td></tr></table></figure>
 <a id="more"></a>
-<p><strong>Size for sophia network:</strong><code>7235</code>  <strong>Filename:</strong> <a href="https://github.com/JoshPAT/network-structure-and-dynamics/blob/master/exercise_2/datasets/drosophila_PPI_graphe.n" target="_blank" rel="external"><code>drosophila_PPI_graphe.n</code></a></p>
-<p><strong>Size for inet network:</strong><code>9757</code>   <strong>Filename:</strong> <a href="https://github.com/JoshPAT/network-structure-and-dynamics/blob/master/exercise_2/datasets/inet_graphe.n" target="_blank" rel="external"><code>inet_graphe.n</code></a></p>
+<p><strong>Size for sophia network:</strong><code>7235</code>  <strong>Filename:</strong> <a href="https://github.com/zh0uquan/network-structure-and-dynamics/blob/master/exercise_2/datasets/drosophila_PPI_graphe.n" target="_blank" rel="external"><code>drosophila_PPI_graphe.n</code></a></p>
+<p><strong>Size for inet network:</strong><code>9757</code>   <strong>Filename:</strong> <a href="https://github.com/zh0uquan/network-structure-and-dynamics/blob/master/exercise_2/datasets/inet_graphe.n" target="_blank" rel="external"><code>inet_graphe.n</code></a></p>
 <h4 id="Exercise_3_—_Node_degree">Exercise 3 — Node degree</h4><p>The program computes and stores it in file <code>(*)_graphe.deg</code>. <em>And (\</em>) is the name of the file.*</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">g.compute_node_degree()</div></pre></td></tr></table></figure>
-<p><strong>Filename:</strong> <a href="https://github.com/JoshPAT/network-structure-and-dynamics/blob/master/exercise_2/datasets/drosophila_PPI_graphe.deg" target="_blank" rel="external"><code>drosophila_PPI_graphe.deg</code></a><br><strong>Filename:</strong> <a href="https://github.com/JoshPAT/network-structure-and-dynamics/blob/master/exercise_2/datasets/inet_graphe.deg" target="_blank" rel="external"><code>inet_graphe.deg</code></a></p>
+<p><strong>Filename:</strong> <a href="https://github.com/zh0uquan/network-structure-and-dynamics/blob/master/exercise_2/datasets/drosophila_PPI_graphe.deg" target="_blank" rel="external"><code>drosophila_PPI_graphe.deg</code></a><br><strong>Filename:</strong> <a href="https://github.com/zh0uquan/network-structure-and-dynamics/blob/master/exercise_2/datasets/inet_graphe.deg" target="_blank" rel="external"><code>inet_graphe.deg</code></a></p>
 <h4 id="Exercise_4_—_Loading_a_graph_in_memory">Exercise 4 — Loading a graph in memory</h4><p>The program returns a list which stores the graph in memory way.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> g.store_in_memory()</div></pre></td></tr></table></figure>
 <h4 id="Exercise_5_—_Number_of_isolated_nodes">Exercise 5 — Number of isolated nodes</h4><p>The program prints the <em>number of nodes of degree 0 of a graph</em>, as well as <em>the density</em>, <em>the average degree</em>, <em>the minimum and maximum degree of the graph</em>.</p>
@@ -251,11 +251,11 @@ Basic operations and propertiesExercise 2 — Size of a graphThe program compute
 <p>Question: Is it necessary to store the graph in memory for this purpose ?</p>
 <p>Answers: Not really. Although it can save memory by saving only existing edges instead of bundles of meaningless number in array matrix, for this purpose, it is much more easier to just use the degree table we has previously computed.</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="string">'Numbers of degree 0: %s'</span> % g.degree_table.count(<span class="number">0</span>)</div><div class="line"><span class="keyword">print</span> <span class="string">'Max Degree: %s'</span> % max(g.degree_table) </div><div class="line"><span class="keyword">print</span> <span class="string">'Min Degree: %s'</span> % min(g.degree_table)</div><div class="line"><span class="keyword">print</span> <span class="string">'Average Degree: %s'</span> % (sum(g.degree_table) * <span class="number">1.0</span> / len(g.degree_table))</div><div class="line"><span class="keyword">print</span> <span class="string">'Density of graph: %s'</span> % (<span class="number">1.0</span> * sum(g.degree_table) / \</div><div class="line">                               (len(g.degree_table) * (len(g.degree_table) - <span class="number">1</span>)))</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="string">'Numbers of degree 0: %s'</span> % g.degree_table.count(<span class="number">0</span>)</div><div class="line"><span class="keyword">print</span> <span class="string">'Max Degree: %s'</span> % max(g.degree_table)</div><div class="line"><span class="keyword">print</span> <span class="string">'Min Degree: %s'</span> % min(g.degree_table)</div><div class="line"><span class="keyword">print</span> <span class="string">'Average Degree: %s'</span> % (sum(g.degree_table) * <span class="number">1.0</span> / len(g.degree_table))</div><div class="line"><span class="keyword">print</span> <span class="string">'Density of graph: %s'</span> % (<span class="number">1.0</span> * sum(g.degree_table) / \</div><div class="line">                               (len(g.degree_table) * (len(g.degree_table) - <span class="number">1</span>)))</div></pre></td></tr></table></figure>
 <h4 id="Exercise_6_—_Degree_distribution">Exercise 6 — Degree distribution</h4><p>The program computes and stores it in file <code>(*)_graphe.dn</code>. <em>And (\</em>) is the name of the file.*</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">g.compute_degree_distribution()</div></pre></td></tr></table></figure>
-<p><strong>Filename:</strong> <a href="https://github.com/JoshPAT/network-structure-and-dynamics/blob/master/exercise_2/datasets/drosophila_PPI_graphe.dn" target="_blank" rel="external"><code>drosophila_PPI_graphe.dn</code></a></p>
-<p><strong>Filename:</strong> <a href="https://github.com/JoshPAT/network-structure-and-dynamics/blob/master/exercise_2/datasets/inet_graphe.dn" target="_blank" rel="external"><code>inet_graphe.dn</code></a></p>
+<p><strong>Filename:</strong> <a href="https://github.com/zh0uquan/network-structure-and-dynamics/blob/master/exercise_2/datasets/drosophila_PPI_graphe.dn" target="_blank" rel="external"><code>drosophila_PPI_graphe.dn</code></a></p>
+<p><strong>Filename:</strong> <a href="https://github.com/zh0uquan/network-structure-and-dynamics/blob/master/exercise_2/datasets/inet_graphe.dn" target="_blank" rel="external"><code>inet_graphe.dn</code></a></p>
 <h4 id="Exercise_7_—_Delete_loops">Exercise 7 — Delete loops</h4><p>After reading the dataset file, the program will delete potienial loops initally and then do the computes.</p>
 <h4 id="Exercise_8_&amp;_9_—_Application">Exercise 8 &amp; 9 — Application</h4><p>The programs integrates all infos shown before.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">g.compute_all() <span class="comment"># includes cumulative degree distribution</span></div></pre></td></tr></table></figure>
@@ -269,7 +269,7 @@ Basic operations and propertiesExercise 2 — Size of a graphThe program compute
 </blockquote>
 <h3 id="Local_density_vs_global_density">Local density vs global density</h3><h4 id="Exercise_10_—_Clustering_coefficient_and_transitive_ratio">Exercise 10 — Clustering coefficient and transitive ratio</h4><p>The program computes both two values - clustering coefficient and transitive ratio in one method.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">g.compute_triangle_values() <span class="comment"># computes and prints both values</span></div></pre></td></tr></table></figure>
-<p>The figure displays the clustering coefficient of each node in both network, and from this figure, we can say that <strong>sophia</strong> is a loosely connceted network since most nodes have low clustering coefficient, while <strong>inet</strong> is a random and evenly distributed network. </p>
+<p>The figure displays the clustering coefficient of each node in both network, and from this figure, we can say that <strong>sophia</strong> is a loosely connceted network since most nodes have low clustering coefficient, while <strong>inet</strong> is a random and evenly distributed network.</p>
 <p><img src="/img/figures/cc.png" alt="clustering coefficient"></p>
 <p>Transitive ratio for <strong>sophia network</strong> are as follows and it shows that <strong>sophia network</strong> is a globally loose network:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">transitive ratio: 0.01425574417</div></pre></td></tr></table></figure>
@@ -278,7 +278,7 @@ Basic operations and propertiesExercise 2 — Size of a graphThe program compute
 <p>Computation time for both networks are as follows:</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Computation Time of Compute_triangle_values in sophia: [<span class="number">0.47</span> - <span class="number">0.53</span>] seconds</div><div class="line">Computation Time of Compute_triangle_values in inet: [<span class="number">0.66</span> - <span class="number">0.71</span>] seconds</div></pre></td></tr></table></figure>
 <blockquote>
-<p>Considering the efficiency of the program, it will iteratives all the nodes，and checks its neighbours’s neighour is also its own neighbour. And Its complexity is $O(n^3)$. </p>
+<p>Considering the efficiency of the program, it will iteratives all the nodes，and checks its neighbours’s neighour is also its own neighbour. And Its complexity is $O(n^3)$.</p>
 </blockquote>
 <h3 id="Breadth_first_search">Breadth first search</h3><h4 id="Exercise_11_—_Breadth_first_search">Exercise 11 — Breadth first search</h4><p>The program will display the BFS of the Graph from node <code>s</code>:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">b = Bfs(g) <span class="comment"># add graph to bfs comupting</span></div><div class="line">b.bfs(s) <span class="comment"># s is the start node</span></div></pre></td></tr></table></figure>
@@ -298,15 +298,15 @@ Basic operations and propertiesExercise 2 — Size of a graphThe program compute
 <p>The complexity of the algorithm is $O(n^2)$.</p>
 <h4 id="Exercise_15_—_Number_of_shortest_paths">Exercise 15 — Number of shortest paths</h4><p>The program will compute the number of shortest path go through <code>v</code> started from seed node <code>s</code> based on the formula that<br>$$<br>n(v) = dn * dp<br>$$</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">b.number_of_shortest_paths(s, v)</div></pre></td></tr></table></figure>
-<h4 id="Exercise_16_—_Betweenness_centrality">Exercise 16 — Betweenness centrality</h4><p>If using the previous exercises before, the compltexity of betweenness centrality would be $O(n^3)$. </p>
+<h4 id="Exercise_16_—_Betweenness_centrality">Exercise 16 — Betweenness centrality</h4><p>If using the previous exercises before, the compltexity of betweenness centrality would be $O(n^3)$.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">b.betweenness_centrality()</div></pre></td></tr></table></figure>
 <p>And I also tried <a href="http://algo.uni-konstanz.de/publications/b-fabc-01.pdf" target="_blank" rel="external"><em>BRANDES</em></a> Algorithm, whose complexity is only $O(m+n)$.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">b.new_betweenness_centrality()</div></pre></td></tr></table></figure>
 <blockquote>
 <p>For the big networks like sophia and inet, it will inefficiently use the simple bfs way to compute, and the faster algorithm proposed by Brandes is more qualified  to do this computation.</p>
 </blockquote>
-<p> <strong>Filename:</strong> <a href="https://github.com/JoshPAT/network-structure-and-dynamics/blob/master/exercise_2/datasets/drosophila_PPI_bc.dn" target="_blank" rel="external"><code>drosophila_PPI_bc.dn</code></a></p>
-<p><strong>Filename:</strong> <a href="https://github.com/JoshPAT/network-structure-and-dynamics/blob/master/exercise_2/datasets/inet_graphe_nc.dn" target="_blank" rel="external"><code>inet_bc.dn</code></a></p>
+<p> <strong>Filename:</strong> <a href="https://github.com/zh0uquan/network-structure-and-dynamics/blob/master/exercise_2/datasets/drosophila_PPI_bc.dn" target="_blank" rel="external"><code>drosophila_PPI_bc.dn</code></a></p>
+<p><strong>Filename:</strong> <a href="https://github.com/zh0uquan/network-structure-and-dynamics/blob/master/exercise_2/datasets/inet_graphe_nc.dn" target="_blank" rel="external"><code>inet_bc.dn</code></a></p>
 <p>Betweenness centrality Distribution and Cumulative Betweenness centrality Distribution of graph for <strong>sophia network</strong> are as follows after I apply the new algorithm:</p>
 <p><img src="/img/figures/sophia_bc.png" alt="sophia_network"></p>
 <p>Betweenness centrality Distribution and Cumulative Betweenness centrality Distribution of graph for <strong>inet network</strong> are as follows after I apply the new algorithm:</p>
@@ -385,7 +385,7 @@ Basic operations and propertiesExercise 2 — Size of a graphThe program compute
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 Zhou Quan
+    		&copy; 2018 Zhou Quan
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
