@@ -3,21 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>到底有多难？论设计并实现一种可部署的多路径TCP&lt;译&gt; | Yesterday&#39;s Byte</title>
+  <title>Do sync settings in Atom | Yesterday&#39;s Byte</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="##摘要当今网络已经演变成为多路径通信的网络：移动设备上通常有多个无线接口，数据中心存有冗余的路径，多宿(multihoming)已是大型服务器群的规范。与此同时，TCP却只支持单路径。
-那么有没有可能通过扩展TCP协议来满足当前互联网应用层的多路径需求呢？答案是肯定的。文中仔细分析了在设计多路径TCP(MPTCP)中因中间盒(middleboes)的多元化导致的问题，同时也阐述了如何解决并完成多">
+  <meta name="description" content="公司xps上用的Pycharm IDE, 虽然真心强大, 1. 缺失变量自动高亮, 2. 自动索引调用函数, 3.自带可断点调试, 但是在ubuntu上的UI真的不是那么美观. 即使捣鼓了半天, 怎么样都没有在mac下那种赏心悦目的感觉, 整体看起来还是那么丑…
+于是寻思着看看把自己mac本地的atom配置同步到xps, 步骤倒挺简单, atom里下个sync-settings插件, 由gist作">
 <meta property="og:type" content="article">
-<meta property="og:title" content="到底有多难？论设计并实现一种可部署的多路径TCP<译>">
-<meta property="og:url" content="http://yoursite.com/2015/05/27/mptcp/index.html">
+<meta property="og:title" content="Do sync settings in Atom">
+<meta property="og:url" content="http://yoursite.com/2018/01/04/do_sync/index.html">
 <meta property="og:site_name" content="Yesterday's Byte">
-<meta property="og:description" content="##摘要当今网络已经演变成为多路径通信的网络：移动设备上通常有多个无线接口，数据中心存有冗余的路径，多宿(multihoming)已是大型服务器群的规范。与此同时，TCP却只支持单路径。
-那么有没有可能通过扩展TCP协议来满足当前互联网应用层的多路径需求呢？答案是肯定的。文中仔细分析了在设计多路径TCP(MPTCP)中因中间盒(middleboes)的多元化导致的问题，同时也阐述了如何解决并完成多">
-<meta property="og:updated_time" content="2015-07-21T15:18:01.000Z">
+<meta property="og:description" content="公司xps上用的Pycharm IDE, 虽然真心强大, 1. 缺失变量自动高亮, 2. 自动索引调用函数, 3.自带可断点调试, 但是在ubuntu上的UI真的不是那么美观. 即使捣鼓了半天, 怎么样都没有在mac下那种赏心悦目的感觉, 整体看起来还是那么丑…
+于是寻思着看看把自己mac本地的atom配置同步到xps, 步骤倒挺简单, atom里下个sync-settings插件, 由gist作">
+<meta property="og:image" content="http://yoursite.com/img/atom-mac.jpg">
+<meta property="og:updated_time" content="2018-01-04T21:15:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="到底有多难？论设计并实现一种可部署的多路径TCP<译>">
-<meta name="twitter:description" content="##摘要当今网络已经演变成为多路径通信的网络：移动设备上通常有多个无线接口，数据中心存有冗余的路径，多宿(multihoming)已是大型服务器群的规范。与此同时，TCP却只支持单路径。
-那么有没有可能通过扩展TCP协议来满足当前互联网应用层的多路径需求呢？答案是肯定的。文中仔细分析了在设计多路径TCP(MPTCP)中因中间盒(middleboes)的多元化导致的问题，同时也阐述了如何解决并完成多">
+<meta name="twitter:title" content="Do sync settings in Atom">
+<meta name="twitter:description" content="公司xps上用的Pycharm IDE, 虽然真心强大, 1. 缺失变量自动高亮, 2. 自动索引调用函数, 3.自带可断点调试, 但是在ubuntu上的UI真的不是那么美观. 即使捣鼓了半天, 怎么样都没有在mac下那种赏心悦目的感觉, 整体看起来还是那么丑…
+于是寻思着看看把自己mac本地的atom配置同步到xps, 步骤倒挺简单, atom里下个sync-settings插件, 由gist作">
+<meta name="twitter:image" content="http://yoursite.com/img/atom-mac.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Yesterday&#39;s Byte" type="application/atom+xml">
   
@@ -103,7 +105,7 @@
 					        
 								<a class="facebook" target="_blank" href="https://www.facebook.com/quan.zhou.102" title="facebook">facebook</a>
 					        
-								<a class="douban" target="_blank" href="/" title="douban">douban</a>
+								<a class="douban" target="_blank" href="https://www.douban.com/people/56951347/" title="douban">douban</a>
 					        
 								<a class="mail" target="_blank" href="/zhouquan0x16@gmail.com" title="mail">mail</a>
 					        
@@ -116,7 +118,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Design-Pattern/" style="font-size: 10px;">Design Pattern</a> <a href="/tags/Multipath-TCP/" style="font-size: 10px;">Multipath TCP</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/algorithm/" style="font-size: 10px;">algorithm</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/performance/" style="font-size: 10px;">performance</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a>
+						<a href="/tags/Design-Pattern/" style="font-size: 10px;">Design Pattern</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/algorithm/" style="font-size: 10px;">algorithm</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/life/" style="font-size: 10px;">life</a> <a href="/tags/performance/" style="font-size: 10px;">performance</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a>
 					</div>
 				</section>
 				
@@ -173,7 +175,7 @@
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/quan.zhou.102" title="facebook">facebook</a>
 			        
-						<a class="douban" target="_blank" href="/" title="douban">douban</a>
+						<a class="douban" target="_blank" href="https://www.douban.com/people/56951347/" title="douban">douban</a>
 			        
 						<a class="mail" target="_blank" href="/zhouquan0x16@gmail.com" title="mail">mail</a>
 			        
@@ -184,11 +186,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-mptcp" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-do_sync" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/05/27/mptcp/" class="article-date">
-  	<time datetime="2015-05-26T23:19:28.000Z" itemprop="datePublished">2015-05-27</time>
+      <a href="/2018/01/04/do_sync/" class="article-date">
+  	<time datetime="2018-01-04T09:13:20.000Z" itemprop="datePublished">2018-01-04</time>
 </a>
     </div>
   
@@ -201,7 +203,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      到底有多难？论设计并实现一种可部署的多路径TCP&lt;译&gt;
+      Do sync settings in Atom
     </h1>
   
 
@@ -210,7 +212,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Multipath-TCP/">Multipath TCP</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/life/">life</a></li></ul>
 	</div>
 
         
@@ -230,38 +232,10 @@
           </div>
         
         
-        <p>##摘要<br>当今网络已经演变成为多路径通信的网络：移动设备上通常有多个无线接口，数据中心存有冗余的路径，<code>多宿(multihoming)</code>已是大型服务器群的规范。与此同时，TCP却只支持单路径。</p>
-<p>那么有没有可能通过扩展TCP协议来满足当前互联网应用层的多路径需求呢？答案是肯定的。文中仔细分析了在设计<code>多路径TCP(MPTCP)</code>中因<code>中间盒(middleboes)</code>的多元化导致的问题，同时也阐述了如何解决并完成多路径TCP的部署。</p>
-<p>文中作者分享了他们在Linux内核中实现多路径TCP中所获得的经验，并且评估了多路径TCP的性能。其中，他们侧重于分析能有效利用不同网络特征的算法，特别是调节发送端与接收端的缓存和段文重序。此外，作者还对MPTCP与普通TCP在网络服务器上的实现性能进行了比较。最后，作者还对设计MPTCP的经验进行了讨论。</p>
-<a id="more"></a>
-<p>##引言<br>在当今的互联网，服务器不仅与多家互联网供应商相连，数据中心在计算节点中都用多个并行路径，移动设备也有多个无线接口。在过去，多路径都是利用了路由的路径分集的优点，而限制在于响应速度和可扩展性。要在真正意义上享用多路径灵活性和高新能，必须根据多路径的特点修改设计传输层协议，而多路径TCP就是通过扩展TCP传输协议做的一种尝试。至作者撰写本文的时候，MPTCP的文档已经处于IETF文档标准化的最终阶段。</p>
-<p>##目标</p>
-<p>##设计</p>
-<p>###建立连接</p>
-<p>###加入子网络流(Subflow)</p>
-<p>###可靠多路径传输</p>
-<p>小彼此</p>
-<p>####流量控制</p>
-<p>####确认</p>
-<p>####编码</p>
-<p>####数据序列的映射</p>
-<p>####发送缓存管理</p>
-<p>####内容修改的中间盒(Middleboxes)</p>
-<p>###结束连接和子网络流</p>
-<p>##实现问题</p>
-<p>###支持中间盒</p>
-<p>###减少内存使用</p>
-<p>####进一步评估</p>
-<p>###解决重序</p>
-<p>##MPTCP的效能</p>
-<p>###基于Wifi和3G的多路径TCP</p>
-<p>###建立连接的延迟</p>
-<p>###HTTP的效能</p>
-<p>##相关著作(略)</p>
-<p>##经验教训</p>
-<p>##结论</p>
-<p>作者: <a href="https://www.cs.princeton.edu/courses/archive/fall14/cos561/papers/MPTCP12.pdf" target="_blank" rel="external"><code>@Costin Raiciu</code>, <code>@Christoph Paasch</code>, <code>@Sebastien Barre</code>, <code>@Alan Ford</code>, <code>@Michio Honda</code>, <code>@Fabien Duchene</code>, <code>@Olivier Bonaventure</code>, <code>@Mark Handley</code></a></p>
-<hr>
+        <p>公司xps上用的Pycharm IDE, 虽然真心强大, 1. 缺失变量自动高亮, 2. 自动索引调用函数, 3.自带可断点调试, 但是在ubuntu上的<br>UI真的不是那么美观. 即使捣鼓了半天, 怎么样都没有在mac下那种赏心悦目的感觉, 整体看起来还是那么丑…</p>
+<p>于是寻思着看看把自己mac本地的atom配置同步到xps, 步骤倒挺简单, atom里下个sync-settings插件, 由gist作为中间同步备份, 最后ubuntu里的atom同步导入下, 结果发现其实还是ubuntu的色彩问题, 同样的设置还是mac下看的舒服🙃, 作为MAC党为自己的品位沾沾自喜.</p>
+<p>对比图:</p>
+<p><img src="/img/atom-mac.jpg" alt="mac"></p>
 
       
     </div>
@@ -271,18 +245,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/05/28/learnjava-one/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Java学习笔记
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/05/26/solution4anything/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Solution for Anything</div>
+    <a href="/2016/03/17/design pattern in python/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Design Pattern in Python</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -311,7 +276,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="mptcp" data-title="到底有多难？论设计并实现一种可部署的多路径TCP&lt;译&gt;" data-url="http://yoursite.com/2015/05/27/mptcp/"></div>
+	<div class="ds-thread" data-thread-key="do_sync" data-title="Do sync settings in Atom" data-url="http://yoursite.com/2018/01/04/do_sync/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
